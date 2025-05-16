@@ -55,6 +55,7 @@ const Test = () => {
                     <p>{pr.createdAt}</p>
                 </div>
             ))}
+            <div>PRs: {prs.length}</div>
         </>
     )
 }
