@@ -1,7 +1,7 @@
 exports.handler = async () => {
     const clientId = process.env.GITHUB_CLIENT_ID;
     const redirect = encodeURIComponent(
-        "https://gitreviewed.netlify.app/.netlify/functions/auth-callback"
+        "https://ubiquitous-baklava-ddca01.netlify.app/.netlify/functions/auth-callback"
     );
     const state = Math.random().toString(36).slice(2);
 

@@ -8,7 +8,7 @@ exports.handler = async ({ queryStringParameters }) => {
         client_id:     process.env.GITHUB_CLIENT_ID,
         client_secret: process.env.GITHUB_CLIENT_SECRET,
         code,
-        redirect_uri:  "https://gitreviewed.netlify.app/.netlify/functions/auth-callback",
+        redirect_uri:  "https://ubiquitous-baklava-ddca01.netlify.app/.netlify/functions/auth-callback",
         state,
     });
 
