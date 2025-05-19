@@ -1,5 +1,3 @@
-const fetch = import("node-fetch");
-
 exports.handler = async ({ queryStringParameters }) => {
     const { code, state } = queryStringParameters;
     // (Optional) Verify `state` matches what you generated in auth-start
