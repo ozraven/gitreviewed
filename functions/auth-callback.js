@@ -6,7 +6,7 @@ exports.handler = async ({ queryStringParameters }) => {
         client_id:     process.env.GITHUB_CLIENT_ID,
         client_secret: process.env.GITHUB_CLIENT_SECRET,
         code,
-        redirect_uri:  "https://ubiquitous-baklava-ddca01.netlify.app/.netlify/functions/auth-callback",
+        redirect_uri:  `${process.env.OAUTH_CALLBACK_URL}`,
         state,
     });
 
@@ -20,7 +20,8 @@ exports.handler = async ({ queryStringParameters }) => {
     return {
         statusCode: 302,
         headers: {
-            Location: `https://ozraven.github.io/gitreviewed/#access_token=${access_token}`,
+            //Location: `https://ozraven.github.io/gitreviewed/#access_token=${access_token}`,
+            Location: `${process.env.FRONTEND_URL}/#access_token=${access_token}`,
         },
     };
 };

@@ -21,6 +21,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
+    "startlong": "serve public -l 8888",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
@@ -48,6 +49,7 @@
   },
   "devDependencies": {
     "gh-pages": "^6.3.0",
-    "netlify-cli": "^21.4.2"
+    "netlify-cli": "^21.4.2",
+    "serve": "^14.2.4"
   }
 }

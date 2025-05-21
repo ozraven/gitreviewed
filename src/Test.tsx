@@ -75,7 +75,7 @@ const Test = () => {
 
     return (
         <>
-            <h1>Test</h1>
+            <h1>Test4</h1>
             {prs.map((pr) => (
                 <div key={pr.url}>
                     <h2>{pr.title}</h2>
