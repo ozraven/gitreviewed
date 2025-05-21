@@ -1,9 +1,8 @@
 import { createContext, useContext, useEffect, useState } from "react";
-import { Octokit } from '@octokit/rest';
 
 interface GitHubLoginProps {
     accessToken: string;
-    octokit: Octokit;
+    logout: () => void;
 }
 
 const GitHubLoginContext = createContext<GitHubLoginProps | null>(null);
@@ -19,8 +18,7 @@ export function useGitHubLogin(): GitHubLoginProps {
 
 export const GitHubLogin = ({ children }: { children: React.ReactNode }) => {
     const [accessToken, setAccessToken] = useState<string | null>(null);
-    const [octokit, setOctokit] = useState<Octokit | null>(null);
-    
+
     useEffect(() => {
         // Parse the URL hash for access token
         if (window.location.hash) {
@@ -29,28 +27,32 @@ export const GitHubLogin = ({ children }: { children: React.ReactNode }) => {
             
             if (token) {
                 setAccessToken(token);
-                
+                localStorage.setItem('accessToken', token);
+
                 // Clear the hash from the URL
                 window.history.replaceState({}, document.title, window.location.pathname);
             }
         }
-    }, []);
-
-    // Update Octokit instance when access token changes
-    useEffect(() => {
-        if (accessToken) {
-            setOctokit(new Octokit({ auth: accessToken }));
-        } else {
-            setOctokit(null);
+        else {
+            const token = localStorage.getItem('accessToken');
+            if (token) {
+                setAccessToken(token);
+            }
         }
-    }, [accessToken]);
+        // TODO: Use localStorage to store the access token.        
+    }, []);
 
     const handleGitHubLogin = () => {
         window.location.href = 'https://ubiquitous-baklava-ddca01.netlify.app/.netlify/functions/auth-start';
     };
 
+    const handleLogout = () => {
+        setAccessToken(null);
+        localStorage.removeItem('accessToken');
+    };
+    
     // Only provide context value when we have both accessToken and octokit
-    const contextValue = accessToken && octokit ? { accessToken, octokit } : null;
+    const contextValue = accessToken ? { accessToken, logout: handleLogout } : null;
 
     return (
         <GitHubLoginContext.Provider value={contextValue}>
