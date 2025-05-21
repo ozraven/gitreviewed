@@ -13,10 +13,8 @@
 /coverage/
 
 # Env files (local overrides)
-/.env.local
-/.env.development.local
-/.env.test.local
-/.env.production.local
+.env*
+!.env.example
 
 # Logs
 npm-debug.log*

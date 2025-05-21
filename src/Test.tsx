@@ -60,7 +60,7 @@ async function fetchOpenPRsByAuthors(authors: string[], octokit: any) {
 }
 
 const Test = () => {
-    const { octokit } = useGitHubLogin();
+    const { accessToken, octokit } = useGitHubLogin();
   
     const [prs, setPRs] = useState<any[]>([]);
 

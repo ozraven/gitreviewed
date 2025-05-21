@@ -10,9 +10,9 @@ exports.handler = async ({ queryStringParameters }) => {
         state,
     });
 
-    const tokenRes = await fetch("https://github.com/login/oauth/access_token", {
-        method:  "POST",
-        headers: { Accept: "application/json" },
+    const tokenRes = await fetch('https://github.com/login/oauth/access_token', {
+        method:  'POST',
+        headers: { Accept: 'application/json', 'Content-Type': 'application/x-www-form-urlencoded' },
         body:    params,
     });
     const { access_token } = await tokenRes.json();
